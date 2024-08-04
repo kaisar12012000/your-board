@@ -1,0 +1,80 @@
+.top-row {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px 20px;
+}
+.download-btn {
+    /* margin: 10px; */
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    /* color: #fff; */
+    background-color: #ddd;
+}
+.download-btn:hover {
+    transition-property: all;
+    transition-duration: .5s;
+    border: 1.5px solid #333;
+    background-color: #fff;
+}
+.bottom-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0px;
+    padding-bottom: 30px;
+    /* right: 20px; */
+    z-index: 1;
+    padding-inline: 20px;
+}
+.add-btn {
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    background-color: cornflowerblue;
+    color: #fff;
+}
+
+.add-btn:hover {
+    scale: 1.2;
+    transition-property: all;
+    transition-duration: 0.2s;
+}
+.add-btn:hover+.helper {
+    display: flex;
+    position: absolute;
+    /* top: 65px; */
+    bottom: 75px;
+    left: 20px;
+    padding: 10px;
+    background: #eee;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    white-space: nowrap;
+}
+.helper {
+    display: none;
+}
+.notebook {
+    background-color: #eee;
+    padding: 25px;
+    height: auto;
+}
+
+.color-change:hover+.icon-name {
+    display: flex;
+    position: absolute;
+    /* top: 65px; */
+    bottom: 75px;
+    right: 20px;
+    padding: 10px;
+    background: #eee;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    white-space: nowrap;
+}

@@ -1,0 +1,21 @@
+.main {
+    max-width: 100%;
+    max-height: 100%;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    margin-top: 20px;
+    display: flex;
+    /* justify-content: center;
+    align-items: baseline; */
+}
+
+/* .mouse-pointer {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+} */
+
+/* .pageNum {
+    text-align: center;
+} */
