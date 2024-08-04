@@ -29,7 +29,13 @@ function App() {
 
   return (
     <div className="App">
-      <Notebook />
+      {sizeErr ? <center>
+        <h1 style={{ color: "red"}}>
+          Error: Opps! It looks like the screen is too small for the app to run.<br></br>
+          Please use a device with a screen width greater than 1200 pixels.
+        </h1>
+      </center> :
+      <Notebook />}
     </div>
   );
 }
