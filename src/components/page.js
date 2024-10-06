@@ -32,11 +32,12 @@ const midPointBtw = (p1, p2) => {
 
 export const adjustElementCoordinates = (element) => {
     const { type, x1, y1, x2, y2 } = element;
-    if (x1 < x2 || (x1 === x2 && y1 < y2)) {
-      return { x1, y1, x2, y2 };
-    } else {
-      return { x1: x2, y1: y2, x2: x1, y2: y1 };
-    }
+    // if (x1 < x2 || (x1 === x2 && y1 < y2)) {
+    //   return { x1, y1, x2, y2 };
+    // } else {
+    //   return { x1: x2, y1: y2, x2: x1, y2: y1 };
+    // }
+    return { x1, y1, x2, y2 };
 };
 
 const createElement = (id, x1, y1, x2, y2, toolType, color) => {
@@ -52,7 +53,7 @@ const createElement = (id, x1, y1, x2, y2, toolType, color) => {
                 id, x1, y1, x2, y2, roughEle, toolType
             }
         case RECTANGLE_TOOL:
-            roughEle = gen.rectangle(x1,y1,Math.abs(x2-x1),Math.abs(y2-y1), {
+            roughEle = gen.rectangle(x1,y1,x2-x1,y2-y1, {
                 roughness: 0,
                 stroke: color
             })
@@ -60,7 +61,7 @@ const createElement = (id, x1, y1, x2, y2, toolType, color) => {
                 id, x1, y1, x2, y2, roughEle, toolType
             }
         case CIRCLE_TOOL:
-            roughEle = gen.circle(x1, y1, Math.abs(x2-x1), {
+            roughEle = gen.circle(x1, y1, Math.abs(x2-x1)*2, {
                 roughness: 0,
                 stroke: color
             })
@@ -143,7 +144,7 @@ export default function Page(props) {
 
         if (texts !== undefined) {
             texts.forEach(textEle => {
-                context.font = "28px serif"
+                context.font = "26px Caveat"
                 context.fillStyle = textEle.color
                 context.fillText(textEle?.str, textEle?.x, textEle?.y)
             })
@@ -329,8 +330,13 @@ export default function Page(props) {
 
     return (
         <div className='main'>
-            { isWriting &&<div style={{ position: "absolute", zIndex: 1, top: clientCoordinates.y, left: clientCoordinates.x, color: props.color+" !important", fontSize: "26px", fontFamily: "serif" }} ><textarea value={str} onChange={textChangeHandler} placeholder='Press Enter when done typing. Type here...' cols={30} rows={2}></textarea></div>}
+            { isWriting && props.toolType === TEXT_TOOL &&<div style={{ position: "absolute", zIndex: 1, top: clientCoordinates.y, left: clientCoordinates.x, color: props.color+" !important", fontSize: "26px", fontFamily: "serif" }} ><textarea style={{fontFamily: `"Caveat", cursive`, fontWeight: 500, fontStyle: 'normal'}} value={str} onChange={textChangeHandler} placeholder='Press Enter when done typing. Type here...' cols={30} rows={2} autoFocus></textarea></div>}
             <canvas
+             style={{
+                fontFamily: `"Caveat", cursive`,
+                // fontWeight: "bold"
+                fontWeight: 500, fontStyle: 'normal'
+             }}
              id={`canvas-${props.pageId}`} 
              width={window.innerWidth} 
              height={window.innerHeight*.98}

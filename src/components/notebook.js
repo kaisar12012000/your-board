@@ -4,20 +4,14 @@ import Toolbar from './toolbar'
 import Page, { convertToPdf } from './page'
 import AddIcon from '@mui/icons-material/Add';
 import "./styles/notebook.css"
-import { LINE_TOOL, RECTANGLE_TOOL, CIRCLE_TOOL, TRIANGLE_TOOL, PENCIL_TOOL, TEXT_TOOL, ERASER_TOOL } from './helpers/constants';
+import { LINE_TOOL, ERASER_TOOL } from './helpers/constants';
 import { SketchPicker } from "react-color";
 import { Download } from '@mui/icons-material';
 import { usePDF } from 'react-to-pdf';
-const reactangleTool = "./Images/rectangle-tool.png";
-const circleTool = "./Images/drawing-compass.png";
-const pencilTool = "./Images/pencil-tool.png";
-const lineTool = "./Images/line-tool.png";
-const triangleTool = "./Images/triangle-tool.png";
-const textTool = "./Images/text-tool.png";
 const eraserTool = "./Images/eraser.png";
 
 const cursorUri = {
-    "RECTANGLE_TOOL" : reactangleTool, "CIRCLE_TOOL" : circleTool, "PENCIL_TOOL": pencilTool, "LINE_TOOL": lineTool, "TRIANGLE_TOOL": triangleTool, "TEXT_TOOL": textTool, "ERASER_TOOL": eraserTool
+    "ERASER_TOOL": eraserTool
 }
 
 export default function Notebook() {
@@ -60,7 +54,8 @@ export default function Notebook() {
     
     return (
         <div style={{
-            cursor : `url(${cursorUri[toolType]}), auto`
+            // cursor : `url(${cursorUri[toolType]}), auto`
+            cursor: toolType === ERASER_TOOL ? `url(${cursorUri[ERASER_TOOL]}), auto` : "crosshair"
          }} >
             {/* <div style={{
                 position: "fixed",
@@ -74,10 +69,10 @@ export default function Notebook() {
             </div> */}
             <div className='top-row'>
                 <Toolbar toolType={toolType} setToolType={setToolType} />
-                <button onClick={downloadHandler} className='download-btn'>
-                    <Download />
-                </button>
             </div>
+            <button onClick={downloadHandler} className='download-btn'>
+                <Download />
+            </button>
             <div ref={targetRef}>
             {pages.map((page, index) =>(<Page cursorCordinates={cursorCordinates} setCursorCordinates={setCursorCordinates} toolType={toolType} setToolType={setToolType} color={color} key={page.pageId} pageId={page.pageId} pageNum={index+1} />))}
             </div>
